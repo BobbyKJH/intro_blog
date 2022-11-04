@@ -1,24 +1,24 @@
-import styled from "styled-components";
-import Button from "@mui/material/Button";
-import { Container, TextField } from "@mui/material";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-const MyButton = styled(Button)`
-  background-color: #000;
-  padding: 100px;
-`;
+import HomePage from "./pages/HomePage";
+import ProjectPage from "./pages/ProjectPage";
+import TechPage from "./pages/TechPage";
+import StoragePage from "./pages/StoragePage";
 
-const Header = styled(Container)`
-  background-color: #000;
-`;
+import Header from "./components/Header";
 
 const App = () => {
   return (
-    <>
-      <Header maxWidth="xl">1</Header>
-      <TextField id="outlined-basic" label="ID" variant="outlined" />
-      <TextField id="outlined-basic" label="PASSWORD" variant="outlined" />
-      <Button variant="contained">로그인</Button>
-    </>
+    <BrowserRouter>
+      <Header />
+
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/" element={<TechPage />} />
+        <Route path="/" element={<StoragePage />} />
+        <Route path="/" element={<ProjectPage />} />
+      </Routes>
+    </BrowserRouter>
   );
 };
 
