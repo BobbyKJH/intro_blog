@@ -4,6 +4,7 @@ import { Route, Routes } from "react-router-dom";
 import MainPage from "./page/MainPage";
 /* Component */
 import Header from "./components/common/Header";
+import Footer from "./components/common/Footer";
 
 const App = () => {
   return (
@@ -13,6 +14,8 @@ const App = () => {
       <Routes>
         <Route path="/" element={<MainPage />} />
       </Routes>
+
+      <Footer />
     </>
   );
 };
