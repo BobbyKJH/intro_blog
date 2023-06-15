@@ -1,5 +1,6 @@
 "use client"
 /** react */
+import {useState} from "react";
 import { useRouter } from 'next/navigation';
 /** redux */
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
@@ -19,6 +20,11 @@ import Toolbar from '@mui/material/Toolbar';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import EditNoteIcon from '@mui/icons-material/EditNote';
 import ListItemIcon from '@mui/material/ListItemIcon';
+import ExpandLess from "@mui/icons-material/ExpandLess";
+import ExpandMore from "@mui/icons-material/ExpandMore";
+import Collapse from "@mui/material/Collapse";
+import StarBorder from "@mui/icons-material/StarBorder";
+import * as React from "react";
 
 
 
@@ -26,7 +32,9 @@ const SideBar = () => {
   const sidebar = useAppSelector(toggleSidebar);
   const dispatch = useAppDispatch();
   const router = useRouter();
+  const [open, setOpen] = useState<boolean>(true);
 
+  /** Link Button */
   const toggleLink = (path: string) =>{
     router.push(path);
     dispatch(closeSliceState());
@@ -57,17 +65,38 @@ const SideBar = () => {
                     </ListItemButton>
                 </ListItems>
             </div>
-
-            <div onClick={() => toggleLink("/notice")}>
-                <ListItems $bgc={pathName("notice")} disablePadding>
-                    <ListItemButton>
-                        <ListItemIcon>
-                            <EditNoteIcon />
-                        </ListItemIcon>
-                        <ListItemText primary={"게시판"} />
-                    </ListItemButton>
-                </ListItems>
-            </div>
+        
+            <ListItems $bgc={pathName("notice")} onClick={() => setOpen(!open)}>
+              <ListItemIcon>
+                <EditNoteIcon />
+              </ListItemIcon>
+              <ListItemText primary="게시판" />
+              {open ? <ExpandLess /> : <ExpandMore />}
+            </ListItems>
+            
+            <Collapse in={open} timeout="auto" unmountOnExit>
+              <div onClick={() => toggleLink("/notice")}>
+                <List component="div" disablePadding>
+                  <ListItems $bgc={pathName("/notice")} sx={{ pl: 4 }}>
+                    <ListItemIcon>
+                      <StarBorder />
+                    </ListItemIcon>
+                    <ListItemText primary="Starred" />
+                  </ListItems>
+                </List>
+              </div>
+              
+              <div onClick={() => toggleLink("/notice/make")}>
+                <List component="div" disablePadding>
+                  <ListItems $bgc={pathName("/notice/make")} sx={{ pl: 4 }}>
+                    <ListItemIcon>
+                      <StarBorder />
+                    </ListItemIcon>
+                    <ListItemText primary="만들기" />
+                  </ListItems>
+                </List>
+              </div>
+            </Collapse>
       </List>
     </>
   );
@@ -77,7 +106,7 @@ const SideBar = () => {
     <Box sx={{ display: 'flex' }}>
       <Box
         component="nav"
-        sx={{ width: { sm: 240 }, flexShrink: { sm: 0 } }}
+        sx={{ width: { md: 240 }, flexShrink: { md: 0 } }}
         aria-label="mailbox folders"
       >
         <Drawer
@@ -87,7 +116,7 @@ const SideBar = () => {
             keepMounted: true
           }}
           sx={{
-            display: { xs: 'block', sm: 'none' },
+            display: { xs: 'block', md: 'none' },
             '& .MuiDrawer-paper': { boxSizing: 'border-box', width: 240 },
           }}
           onClose={() => dispatch(setSliceState())}
@@ -98,7 +127,7 @@ const SideBar = () => {
         <Drawer
           variant="permanent"
           sx={{
-            display: { xs: 'none', sm: 'block' },
+            display: { xs: 'none', md: 'block' },
             '& .MuiDrawer-paper': { boxSizing: 'border-box', width: 240 },
           }}
           open
