@@ -18,10 +18,21 @@
 
 body {
   color: rgb(var(--foreground-rgb));
+  white-space: wrap;
   background: linear-gradient(
       to bottom,
       transparent,
       rgb(var(--background-end-rgb))
     )
     rgb(var(--background-start-rgb));
+}
+
+#main {
+  margin-left: 240px;
+}
+
+@media (max-width: 600px) {
+  #main {
+    margin-left: 0px;
+  } 
 }

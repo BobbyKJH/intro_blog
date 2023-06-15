@@ -1,9 +1,8 @@
-import Image from 'next/image'
+  const Home = () => {
 
- const Home = () => {
-  return (
-    <>1</>
-  )
+    return (
+        <div>home</div>
+    )
 }
 
 export default Home

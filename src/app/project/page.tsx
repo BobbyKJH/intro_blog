@@ -1,5 +1,11 @@
-const ProjectPage = () => {
-  return <div>project</div>
-}
+import React from 'react';
 
-export default ProjectPage
+const HomePage = () => {
+    return (
+        <div>
+          
+        </div>
+    );
+};
+
+export default HomePage;

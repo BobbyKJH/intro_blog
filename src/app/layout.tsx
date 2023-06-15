@@ -8,8 +8,6 @@ import './globals.css'
 /** font */
 import { Inter } from 'next/font/google'
 
-
-
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
@@ -23,14 +21,14 @@ const RootLayout = (props: { children: React.ReactNode }) => {
       <body className={inter.className}>
         <Providers>
           <Header/>
-          
+
           <SideBar/>
 
           <main id="main">
             {props.children}
           </main>
-          </Providers>
-        </body>
+        </Providers>
+      </body>
     </html>
   )
 };
