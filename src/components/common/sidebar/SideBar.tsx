@@ -9,14 +9,7 @@ import { closeSliceState, setSliceState, toggleSidebar } from '@/store/slice/sid
 import { pathName } from '@/utils/Utils';
 /** style */
 import { ListItems } from '@/style/components/common/sidebar/SideBar.styled';
-import Box from '@mui/material/Box';
-import List from '@mui/material/List';
-import ListItemButton from '@mui/material/ListItemButton';
-import Toolbar from '@mui/material/Toolbar';
-import ListItemText from '@mui/material/ListItemText';
-import Drawer from '@mui/material/Drawer';
-import Collapse from "@mui/material/Collapse";
-import ListItemIcon from '@mui/material/ListItemIcon';
+import { Box, List, ListItemButton, Toolbar, ListItemText, Drawer, Collapse, ListItemIcon } from '@mui/material';
 /** icon */
 import HomeIcon from '@mui/icons-material/Home';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
@@ -74,6 +67,7 @@ const SideBar = () => {
           <ListItemText primary="게시판" />
           {open ? <ExpandLess /> : <ExpandMore />}
         </ListItems>
+        
         <Collapse in={open} timeout="auto" unmountOnExit>
           <div onClick={() => toggleLink("/notice")}>
             <List component="div" disablePadding>
@@ -81,7 +75,7 @@ const SideBar = () => {
                 <ListItemIcon>
                   <NotesIcon />
                 </ListItemIcon>
-                <ListItemText primary="게시판" />
+                <ListItemText primary="읽기" />
               </ListItems>
             </List>
           </div>
@@ -92,7 +86,7 @@ const SideBar = () => {
                 <ListItemIcon>
                   <CreateIcon />
                 </ListItemIcon>
-                <ListItemText primary="만들기" />
+                <ListItemText primary="글쓰기" />
               </ListItems>
             </List>
           </div>
