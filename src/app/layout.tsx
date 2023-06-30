@@ -1,5 +1,4 @@
 /** redux */
-import { Providers } from '@/store/Provider'
 /** Components */
 import Header from '@/components/common/header/Header'
 import SideBar from '@/components/common/sidebar/SideBar'
@@ -7,6 +6,8 @@ import SideBar from '@/components/common/sidebar/SideBar'
 import './globals.css'
 /** font */
 import { Inter } from 'next/font/google'
+import QueryProviders from "@/provider/QueryProviders";
+import {Providers} from "@/provider/Provider";
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -19,6 +20,7 @@ const RootLayout = (props: { children: React.ReactNode }) => {
   return (
     <html lang="ko">
       <body className={inter.className}>
+      <QueryProviders>
         <Providers>
           <Header/>
 
@@ -28,6 +30,7 @@ const RootLayout = (props: { children: React.ReactNode }) => {
             {props.children}
           </main>
         </Providers>
+      </QueryProviders>
       </body>
     </html>
   )
